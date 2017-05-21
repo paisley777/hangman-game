@@ -1,0 +1,89 @@
+.body-container {
+	width: 960px;
+	margin: 0 auto;
+}
+
+.img-header {
+	width: 200px;
+}
+
+.title-text {
+	font-weight: bold;
+	font-size: 40px;
+}
+
+.bg-red {
+	background-color: red;
+	height: 10px;
+	margin-bottom: 10px;
+}
+
+.word-div {
+	position: absolute;
+	top: 15%;
+	left: 10%;
+	color: white;
+	font-weight: 40px;
+}
+
+.js-underscore {
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	border-bottom: solid 5px white;
+	margin: 10px;
+}
+
+.visible-letter {
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	margin: 10px;
+	color: white;
+	text-transform: capitalize;
+	font-size: 30px;
+	font-weight: bold;
+}
+
+.guesses {
+	position: absolute;
+	top: 40%;
+	left: 10%;
+	color: white;
+	font-size: 20px;
+}
+
+.letter-guesses {
+	display: inline-block;
+	width: 20px;
+	color: white;
+	text-transform: capitalize;
+}
+
+.attempts {
+	position: absolute;
+	top: 50%;
+	left: 10%;
+	color: white;
+	font-size: 20px
+}
+
+.wins {
+	position: absolute;
+	top: 60%;
+	left: 10%;
+	color: white;
+	font-size: 20px;
+}
+
+.instructions {
+	text-align: center;
+	font-weight: bold;
+}
+
+.chalk-text {
+	position: absolute;
+	top: 20%;
+	left:20%;
+	color: white;
+}

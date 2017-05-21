@@ -1,28 +1,44 @@
-/*At time of landing on page:
-(1) the blank spaces for a current word are displayed
-(2) number of remaining guesses is 12 
-(3) letters already guessed is blank
-*/
 
-/*Pressing any key starts the game */
+$(document).ready(function() {
 
-/* If user guesses a correct letter: 
-	(1) letter replaces appropriate blanks in word
-	(2) number of guesses remaining does not decrease
-	(3) play sound effect 
-*/
+  /*define list of words*/
+  var wordArray = ['springfield', 'cowabunga', 'smithers', 'donuts', 'flanders', 'krusty',
+  'wiggum', 'poochie', 'nuclear', 'saxophone', 'maggie', 'groening'];
 
-/* If user guesses an incorrect letter
-	(1) letter displays under letters already guessed 
-	(2) reduces the number of guesses by 1 
-	(3) play sound effect
-*/
+  /*choose a current word*/
+  var currentWord = wordArray[Math.floor(Math.random() * wordArray.length)];
 
-/* If user guesses a duplicate letter, nothing happens */
+  /*split the current word into an array of letters*/
+  var letterArray = currentWord.split('');
 
-/* If number of guesses remaining is 0, "you're a loser" */
+  /*create guessed letter array*/
+  var guessedLetterArray = [];
 
-/* If no blanks are remaining in word:
-	(1) provide a winning message
-	(2) reset game with a new word
-*/
+  /*create variable for maximum number of wrong letter guesses*/
+  var attempts = 7;
+  $('.attempts').html('Attempts remaining:&nbsp&nbsp' + attempts);
+
+  /*create variable to count up the number of wins*/
+  var winCount;
+
+  /*create placeholder divs for each letter in current word*/
+  var currentWordDiv = $('.word-div');
+  for (var i = 0; i < letterArray.length; i++) {
+    var letterDiv = $('<div>');
+    currentWordDiv.append(letterDiv);
+    letterDiv.html('');
+    letterDiv.addClass('js-underscore');
+  }
+
+  /*Obtain user's letter guess*/
+  var userGuess;
+  document.onkeyup = function(event) {
+    userGuess = event.key;
+    console.log(userGuess);
+  }
+  
+});
+
+
+
+

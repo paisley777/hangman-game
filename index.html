@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Hangman</title>
+
+    <!--Bootstrap-->
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!--CSS-->
+	  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+
+	</head>
+
+	<body>
+		<!--Container for body-->
+		<div class="body-container">
+		
+			<!--Header-->
+			<div class="row">
+        <div class="col-xs-3 col-sm-3 col-md-3">
+          <img src="assets/images/simpsons-text.png" class="img-header">
+        </div>
+         		
+        <div class="col-xs-9 col-sm-9 col-md-9">
+         	<h1 class="title-text">Don't have a cow, (hang)man!</h1>
+        </div>
+      </div>
+
+      <div class="bg-red"></div>
+
+      <!--Main content-->
+      	<div class = "row instructions"> Press any key to get started! </div>
+
+        <div class = "row">
+          <div class = "col-xs-2 col-sm-2 col-md-2"> </div>
+      		
+          <div class = "col-xs-8 col-sm-8 col-md-8"> 
+      			<img src = "assets/images/bart-blank-chalkboard.png" class ="center-block img-responsive">
+            <div class = "word-div"></div> 
+            <div class = "guesses">Letters guessed:&nbsp &nbsp</div>
+            <div class = "attempts">Attempts remaining:&nbsp &nbsp</div>
+            <div class = "wins">Number of wins:&nbsp &nbsp</div>
+      		</div>	
+            
+          <div class="col-xs-2 col-sm-2 col-md-2"> </div>
+      	</div>
+
+		</div>
+		
+		<script src="assets/javascript/game.js"></script>	
+	</body>
+</html>
