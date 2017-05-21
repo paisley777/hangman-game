@@ -30,6 +30,12 @@ $(document).ready(function() {
     letterDiv.addClass('js-underscore');
   }
 
+  /*create an array containing all the letter divs that have the underscore class*/
+  var letterDivArray = $('.js-underscore');
+
+  /*create a variable to grab a single letter div*/
+  var singleLetterDiv;
+
   /*Obtain user's letter guess*/
   var userGuess;
   document.onkeyup = function(event) {
@@ -38,47 +44,43 @@ $(document).ready(function() {
     checkLetter();
   }
 
-  /*I believe the code works up to here. In subsequent code, I was trying to test whether
-  the user's guess matched a letter in the randomly selected word. If so, I wanted to change
-  the CSS class of the corresponding letter div so that the letter would be displayed.*/
-
-  /*check if user guess is equal to letter(s) in letterArray;
-    if yes, run function to display letter
-    if no, run function to record guessed letter*/  
-  function checkLetter(userGuess){
+  /*check if user's letter choice is in the letter array, and return an array of position matches*/
+ 
+  function checkLetter(){
     var matchedLetters = [];
     for (i = 0; i < letterArray.length; i++) {
-      if (userGuess === letterArray[i]) {
+      if (letterArray[i] === userGuess) {
         matchedLetters.push(i);
-        console.log(matchedLetters); // this line is not returning intended values
-        displayLetter();
-      }
-      if (matchedLetters.length = 0) {
-        recordGuessedLetter();
       }
     }
-  };
 
-  /*create an array containing all the letter divs that have the underscore class*/
-  var letterDivArray = $('.js-underscore');
+    /*if there are letter matches, display the letter;
+    if there are not, run function to record guessed letter*/
 
-  /*create a variable to grab a single letter div*/
-  var singleLetterDiv;
-
-  /*create a function that changes the CSS class of the letter div containing the matched letter*/
-  function displayLetter() {
-    singleLetterDiv = letterDivArray(letterArray[i]);
-    singleLetterDiv.innerText = letterArray[i];
-    singleLetterDiv.removeClass('js-underscore').addClass('visible-letter');
+    if (matchedLetters.length > 0) {
+      for (i = 0; i < matchedLetters.length; i++) {
+        singleLetterDiv = letterDivArray[matchedLetters[i]];
+        singleLetterDiv.innerText = letterArray[matchedLetters[i]];
+        singleLetterDiv.classList.remove('js-underscore');
+        singleLetterDiv.classList.add('visible-letter');
+      }
+    } else {
+      recordGuessedLetter();
+    }
   };
 
   /*create a function that records the guessed letter*/
   function recordGuessedLetter() {
     guessedLetterArray.push(userGuess);
-    $('.guesses').html('Letters guessed:&nbsp&nbsp' + userGuess);
+    $('.guesses').html('Letters guessed:&nbsp&nbsp' + guessedLetterArray);
     attempts--;
     $('.attempts').html('Guesses remaining:&nbsp&nbsp' + attempts);
   };
+
+  /*If all singleLetterDivs within letterDivArray have the class "visible-letter"
+    increase winCount by 1 and display a new word*/
+
+  /*When attempts reach 0, display a new word*/
  
 });
 
