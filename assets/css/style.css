@@ -53,6 +53,12 @@
 	font-size: 20px;
 }
 
+.js-guesses {
+	display: inline-block;
+	color: white;
+	margin: 10px;
+}
+
 .letter-guesses {
 	display: inline-block;
 	width: 20px;
