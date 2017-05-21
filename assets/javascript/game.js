@@ -69,16 +69,26 @@ $(document).ready(function() {
     }
   };
 
-  /*create a function that records the guessed letter*/
+  /*create a function that records the guessed letter;
+    need to add code to prevent duplicates from being recorded*/
   function recordGuessedLetter() {
     guessedLetterArray.push(userGuess);
-    $('.guesses').html('Letters guessed:&nbsp&nbsp' + guessedLetterArray);
+    $('.guesses').html('Letters guessed:&nbsp&nbsp' + guessedLetterArray.join(' '));
     attempts--;
     $('.attempts').html('Guesses remaining:&nbsp&nbsp' + attempts);
   };
 
-  /*If all singleLetterDivs within letterDivArray have the class "visible-letter"
-    increase winCount by 1 and display a new word*/
+  /*If the variable 'attempts' is greater than 0 and
+    all singleLetterDivs within letterDivArray have the class 'visible-letter', then
+    increase winCount by 1 and display a new word
+    Tried code below, but isn't returning the correct visible count 
+
+    var visibleCount = $('visible-letter').length;
+    console.log(visibleCount);
+    if ((attempts > 0) && (visibleCount = letterArray.length)) {
+      winCount++;
+      $('.wins').html('Number of wins:&nbsp&nbsp' + winCount);
+    };*/
 
   /*When attempts reach 0, display a new word*/
  
