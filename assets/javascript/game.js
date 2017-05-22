@@ -6,7 +6,11 @@ $(document).ready(function() {
   'wiggum', 'poochie', 'nuclear', 'saxophone', 'maggie', 'groening'];
 
   /*choose a current word*/
-  var currentWord = wordArray[Math.floor(Math.random() * wordArray.length)];
+  var currentWord;
+  function selectWord() {
+    currentWord = wordArray[Math.floor(Math.random() * wordArray.length)];
+  };
+  selectWord();
 
   /*split the current word into an array of letters*/
   var letterArray = currentWord.split('');
@@ -19,16 +23,22 @@ $(document).ready(function() {
   $('.attempts').html('Attempts remaining:&nbsp&nbsp' + attempts);
 
   /*create variable to count up the number of wins*/
-  var winCount;
+  var winCount = 0;
+  $('.wins').html('Number of wins:&nbsp&nbsp' + winCount);
 
   /*create placeholder divs for each letter in current word*/
-  var currentWordDiv = $('.word-div');
-  for (var i = 0; i < letterArray.length; i++) {
-    var letterDiv = $('<div>');
-    currentWordDiv.append(letterDiv);
-    letterDiv.html('');
-    letterDiv.addClass('js-underscore');
-  }
+  
+  function displayWord(){
+    var currentWordDiv = $('.word-div');
+    for (var i = 0; i < letterArray.length; i++) {
+      var letterDiv = $('<div>');
+      currentWordDiv.append(letterDiv);
+      letterDiv.html('');
+      letterDiv.addClass('js-underscore');
+    }  
+  };
+
+  displayWord();
 
   /*create an array containing all the letter divs that have the underscore class*/
   var letterDivArray = $('.js-underscore');
@@ -41,7 +51,9 @@ $(document).ready(function() {
   document.onkeyup = function(event) {
     userGuess = event.key;
     console.log(userGuess);
-    checkLetter();
+    if (attempts > 0) {
+      checkLetter();
+    }
   }
 
   /*check if user's letter choice is in the letter array, and return an array of position matches*/
@@ -63,6 +75,7 @@ $(document).ready(function() {
         singleLetterDiv.innerText = letterArray[matchedLetters[i]];
         singleLetterDiv.classList.remove('js-underscore');
         singleLetterDiv.classList.add('visible-letter');
+        increaseWins();
       }
     } else {
       recordGuessedLetter();
@@ -76,22 +89,33 @@ $(document).ready(function() {
     $('.guesses').html('Letters guessed:&nbsp&nbsp' + guessedLetterArray.join(' '));
     attempts--;
     $('.attempts').html('Guesses remaining:&nbsp&nbsp' + attempts);
+    resetWord();
   };
 
   /*If the variable 'attempts' is greater than 0 and
     all singleLetterDivs within letterDivArray have the class 'visible-letter', then
-    increase winCount by 1 and display a new word
-    Tried code below, but isn't returning the correct visible count 
+    increase winCount by 1 and display a new word*/
 
-    var visibleCount = $('visible-letter').length;
-    console.log(visibleCount);
-    if ((attempts > 0) && (visibleCount = letterArray.length)) {
+  var underscoreCount;
+  function increaseWins() {
+    underscoreCount = $('.js-underscore').length;
+    if ((attempts > 0) && (underscoreCount === 0)) {
       winCount++;
       $('.wins').html('Number of wins:&nbsp&nbsp' + winCount);
-    };*/
+      resetWord();
+    }
+  };
 
-  /*When attempts reach 0, display a new word*/
- 
+  /*create a function to reset the current word*/
+  function resetWord () {
+    if ((attempts === 0) || ((attempts > 0) && (underscoreCount === 0))) {
+      guessedLetterArray = [];
+      attempts = 7;
+      selectWord();
+      /*displayWord function is appending another array, not replacing the array
+      displayWord();*/
+    }
+  };
 });
 
 
